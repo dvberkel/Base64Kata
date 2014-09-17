@@ -45,6 +45,16 @@ public class Base64DecodeTest {
         data.add(verifyThat("AA==").decodesTo(0b0));
         data.add(verifyThat("AAAAAAA=").decodesTo(0b0, 0b0, 0b0, 0b0, 0b0));
         data.add(verifyThat("AAAAAA==").decodesTo(0b0, 0b0, 0b0, 0b0));
+        data.add(verifyThat("AAAB").decodesTo(0b0, 0b0, 0b00000001));
+        data.add(verifyThat("AAA/").decodesTo(0b0, 0b0, 0b00111111));
+        data.add(verifyThat("AABA").decodesTo(0b0, 0b0, 0b01000000));
+        data.add(verifyThat("AA//").decodesTo(0b0, 0b00001111, 0b11111111));
+        data.add(verifyThat("ABAA").decodesTo(0b0, 0b00010000, 0b00000000));
+        data.add(verifyThat("A///").decodesTo(0b00000011, 0b11111111, 0b11111111));
+        data.add(verifyThat("BAAA").decodesTo(0b00000100, 0b00000000, 0b00000000));
+        data.add(verifyThat("////").decodesTo(0b11111111, 0b11111111, 0b11111111));
+        data.add(verifyThat("AQ==").decodesTo(0b00000001));
+        data.add(verifyThat("AAE=").decodesTo(0b00000000, 0b00000001));
         return data;
     }
 }
