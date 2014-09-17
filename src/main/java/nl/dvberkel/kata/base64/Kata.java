@@ -25,6 +25,10 @@ public class Kata {
                 return new DefaultCharacterValues(source[index], source[index + 1], source[index + 2]);
         }
     }
+
+    public byte[] decode(String source) {
+        return new byte[] { 0b0, 0b0, 0b0 };
+    }
 }
 
 interface CharacterValues {
