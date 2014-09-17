@@ -29,9 +29,9 @@ public class Base64DecodeTest {
     }
 
     @Parameterized.Parameters
-    public static Collection<Object[]> data() {
-        List<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{verifyThat("AAAA").decodesTo(0b0, 0b0, 0b0)});
+    public static Collection<Base64DecodeTestCase[]> data() {
+        List<Base64DecodeTestCase[]> data = new ArrayList<>();
+        data.add(verifyThat("AAAA").decodesTo(0b0, 0b0, 0b0));
         return data;
     }
 }
@@ -49,13 +49,13 @@ class Base64DecodeTestCase {
     }
 
 
-    public Base64DecodeTestCase decodesTo(int... destination) {
+    public Base64DecodeTestCase[] decodesTo(int... destination) {
         this.destination = new byte[destination.length];
         for (int index = 0; index < destination.length; index++) {
             this.destination[index] = (byte) destination[index];
         }
 
-        return this;
+        return new Base64DecodeTestCase[] { this };
     }
 
     public String getSource() {
