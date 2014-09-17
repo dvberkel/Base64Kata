@@ -1,6 +1,7 @@
 package nl.dvberkel.kata.base64;
 
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -17,15 +18,21 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class Base64DecodeTest {
     private final String source;
     private final byte[] destination;
+    private Kata kata;
 
     public Base64DecodeTest(Base64DecodeTestCase testCase) {
         this.source = testCase.getSource();
         this.destination = testCase.getDestination();
     }
 
+    @Before
+    public void createKata() throws Exception {
+        kata = new Kata();
+    }
+
     @Test
     public void shouldDecodeCorrectly() {
-        assertThat((new Kata()).decode(source), is(destination));
+        assertThat(kata.decode(source), is(destination));
     }
 
     @Parameterized.Parameters
@@ -55,7 +62,7 @@ class Base64DecodeTestCase {
             this.destination[index] = (byte) destination[index];
         }
 
-        return new Base64DecodeTestCase[] { this };
+        return new Base64DecodeTestCase[]{this};
     }
 
     public String getSource() {
