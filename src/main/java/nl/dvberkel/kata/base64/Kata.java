@@ -1,5 +1,10 @@
 package nl.dvberkel.kata.base64;
 
+import java.io.ByteArrayOutputStream;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Kata {
     public String encode(byte[] source) {
         StringBuilder result = new StringBuilder();
@@ -27,7 +32,11 @@ public class Kata {
     }
 
     public byte[] decode(String source) {
-        return new byte[] { 0b0, 0b0, 0b0 };
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        result.write(0b0);
+        result.write(0b0);
+        result.write(0b0);
+        return result.toByteArray();
     }
 }
 
