@@ -6,10 +6,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static nl.dvberkel.kata.base64.Base64EncodeTestCase.verifyThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -131,7 +129,7 @@ class Base64EncodeTestCase {
 
     public static Base64EncodeTestCase verifyThat(int... source) {
         byte[] clone = new byte[source.length];
-        for(int index = 0; index < source.length; index++) {
+        for (int index = 0; index < source.length; index++) {
             clone[index] = (byte) source[index];
         }
         return verifyThat(clone);

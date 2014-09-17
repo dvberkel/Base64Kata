@@ -20,9 +20,9 @@ public class Kata {
             case 1:
                 return new OneByteCharacterValues(source[index]);
             case 2:
-                return new TwoByteCharacterValues(source[index], source[index+1]);
+                return new TwoByteCharacterValues(source[index], source[index + 1]);
             default:
-                return new DefaultCharacterValues(source[index], source[index+1], source[index+2]);
+                return new DefaultCharacterValues(source[index], source[index + 1], source[index + 2]);
         }
     }
 }
