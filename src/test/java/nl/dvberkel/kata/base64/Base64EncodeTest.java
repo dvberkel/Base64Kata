@@ -41,15 +41,15 @@ public class Base64EncodeTest {
     public static Collection<Object[]> data() {
         List<Object[]> data = new ArrayList<>();
         data.add(new Object[]{verifyThat(0b0, 0b0, 0b0).encodesAs("AAAA")});
+        data.add(new Object[]{verifyThat(0b0, 0b0, 0b0, 0b0, 0b0, 0b0).encodesAs("AAAAAAAA")});
+        data.add(new Object[]{verifyThat(0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0).encodesAs("AAAAAAAAAAAA")});
         data.add(new Object[]{verifyThat(0b0, 0b0).encodesAs("AAA=")});
         data.add(new Object[]{verifyThat(0b0).encodesAs("AA==")});
-        data.add(new Object[]{verifyThat(0b0, 0b0, 0b0, 0b0, 0b0, 0b0).encodesAs("AAAAAAAA")});
         data.add(new Object[]{verifyThat(0b0, 0b0, 0b0, 0b0, 0b0).encodesAs("AAAAAAA=")});
         data.add(new Object[]{verifyThat(0b0, 0b0, 0b0, 0b0).encodesAs("AAAAAA==")});
-        data.add(new Object[]{verifyThat(0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0).encodesAs("AAAAAAAAAAAA")});
         data.add(new Object[]{verifyThat(0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0).encodesAs("AAAAAAAAAAA=")});
         data.add(new Object[]{verifyThat(0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0).encodesAs("AAAAAAAAAA==")});
-        data.add(new Object[]{verifyThat(0b0, 0b0, 0b000000001).encodesAs("AAAB")});
+        data.add(new Object[]{verifyThat(0b0, 0b0, 0b00000001).encodesAs("AAAB")});
         data.add(new Object[]{verifyThat(0b0, 0b0, 0b00000010).encodesAs("AAAC")});
         data.add(new Object[]{verifyThat(0b0, 0b0, 0b00000011).encodesAs("AAAD")});
         data.add(new Object[]{verifyThat(0b0, 0b0, 0b00000100).encodesAs("AAAE")});
@@ -113,14 +113,11 @@ public class Base64EncodeTest {
         data.add(new Object[]{verifyThat(0b0, 0b0, 0b00111110).encodesAs("AAA+")});
         data.add(new Object[]{verifyThat(0b0, 0b0, 0b00111111).encodesAs("AAA/")});
         data.add(new Object[]{verifyThat(0b0, 0b00000000, 0b01000000).encodesAs("AABA")});
-        data.add(new Object[]{verifyThat(0b0, 0b00000000, 0b10000000).encodesAs("AACA")});
-        data.add(new Object[]{verifyThat(0b0, 0b00000000, 0b11000000).encodesAs("AADA")});
-        data.add(new Object[]{verifyThat(0b0, 0b00000001, 0b00000000).encodesAs("AAEA")});
-        data.add(new Object[]{verifyThat(0b0, 0b00000001, 0b01000000).encodesAs("AAFA")});
+        data.add(new Object[]{verifyThat(0b0, 0b00001111, 0b11000000).encodesAs("AA/A")});
         data.add(new Object[]{verifyThat(0b0, 0b00010000, 0b00000000).encodesAs("ABAA")});
-        data.add(new Object[]{verifyThat(0b0, 0b00100000, 0b00000000).encodesAs("ACAA")});
-        data.add(new Object[]{verifyThat(0b0, 0b00110000, 0b00000000).encodesAs("ADAA")});
+        data.add(new Object[]{verifyThat(0b00000011, 0b11110000, 0b00000000).encodesAs("A/AA")});
         data.add(new Object[]{verifyThat(0b00000100, 0b00000000, 0b00000000).encodesAs("BAAA")});
+        data.add(new Object[]{verifyThat(0b11111100, 0b00000000, 0b00000000).encodesAs("/AAA")});
         data.add(new Object[]{verifyThat(0b00000001).encodesAs("AQ==")});
         data.add(new Object[]{verifyThat(0b00000000, 0b000000001).encodesAs("AAE=")});
         return data;
