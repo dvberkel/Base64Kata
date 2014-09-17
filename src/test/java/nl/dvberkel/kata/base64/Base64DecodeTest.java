@@ -18,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class Base64DecodeTest {
     private final String source;
     private final byte[] destination;
-    private Kata kata;
+    private Decoder kata;
 
     public Base64DecodeTest(Base64DecodeTestCase testCase) {
         this.source = testCase.getSource();
