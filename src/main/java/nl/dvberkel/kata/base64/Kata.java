@@ -10,10 +10,7 @@ public class Kata {
         int index = 0;
         while (index < source.length) {
             CharacterValues characterValues = characterValuesFor(source, index);
-            result.append(characterValues.first());
-            result.append(characterValues.second());
-            result.append(characterValues.third());
-            result.append(characterValues.fourth());
+            characterValues.appendTo(result);
             index += 3;
         }
         return result.toString();
@@ -54,13 +51,7 @@ public class Kata {
 }
 
 interface CharacterValues {
-    public String first();
-
-    public String second();
-
-    public String third();
-
-    public String fourth();
+    void appendTo(StringBuilder result);
 }
 
 class DefaultCharacterValues implements CharacterValues {
@@ -77,24 +68,28 @@ class DefaultCharacterValues implements CharacterValues {
         part = new byte[]{first, second, third};
     }
 
-    @Override
-    public String first() {
+    private String first() {
         return character((part[0] & 0b11111100) >> 2);
     }
 
-    @Override
-    public String second() {
+    private String second() {
         return character(((part[0] & 0b00000011) << 4) | ((part[1] & 0b11110000) >> 4));
     }
 
-    @Override
-    public String third() {
+    protected String third() {
         return character(((part[1] & 0b00001111) << 2) | ((part[2] & 0b11000000) >> 6));
     }
 
-    @Override
-    public String fourth() {
+    protected String fourth() {
         return character(part[2] & 0b00111111);
+    }
+
+    @Override
+    public void appendTo(StringBuilder result) {
+        result.append(first());
+        result.append(second());
+        result.append(third());
+        result.append(fourth());
     }
 
     private String character(int index) {
@@ -108,7 +103,7 @@ class TwoByteCharacterValues extends DefaultCharacterValues {
     }
 
     @Override
-    public String fourth() {
+    protected String fourth() {
         return "=";
     }
 }
@@ -121,7 +116,7 @@ class OneByteCharacterValues extends TwoByteCharacterValues {
     }
 
     @Override
-    public String third() {
+    protected String third() {
         return "=";
     }
 }
