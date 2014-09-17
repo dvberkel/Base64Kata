@@ -17,7 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(Parameterized.class)
 public class Base64EncodeTest {
-    private final int[] source;
+    private final byte[] source;
     private final String destination;
 
     private Kata kata;
@@ -128,15 +128,23 @@ public class Base64EncodeTest {
 }
 
 class Base64EncodeTestCase {
-    private final int[] source;
+    private final byte[] source;
 
     private String destination;
 
     public static Base64EncodeTestCase verifyThat(int... source) {
+        byte[] clone = new byte[source.length];
+        for(int index = 0; index < source.length; index++) {
+            clone[index] = (byte) source[index];
+        }
+        return verifyThat(clone);
+    }
+
+    public static Base64EncodeTestCase verifyThat(byte... source) {
         return new Base64EncodeTestCase(source);
     }
 
-    private Base64EncodeTestCase(int[] source) {
+    private Base64EncodeTestCase(byte[] source) {
         this.source = source;
     }
 
@@ -146,7 +154,7 @@ class Base64EncodeTestCase {
         return this;
     }
 
-    public int[] getSource() {
+    public byte[] getSource() {
         return source;
     }
 

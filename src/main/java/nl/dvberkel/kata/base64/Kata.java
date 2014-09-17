@@ -1,7 +1,7 @@
 package nl.dvberkel.kata.base64;
 
 public class Kata {
-    public String encode(int[] source) {
+    public String encode(byte[] source) {
         StringBuilder result = new StringBuilder();
         int index = 0;
         while (index < source.length) {
@@ -15,7 +15,7 @@ public class Kata {
         return result.toString();
     }
 
-    private CharacterValues characterValuesFor(int[] source, int index) {
+    private CharacterValues characterValuesFor(byte[] source, int index) {
         switch (source.length - index) {
             case 1:
                 return new OneByteCharacterValues(source[index]);
@@ -45,10 +45,10 @@ class DefaultCharacterValues implements CharacterValues {
             "+", "/"
     };
 
-    private int[] part;
+    private byte[] part;
 
-    public DefaultCharacterValues(int first, int second, int third) {
-        part = new int[]{first, second, third};
+    public DefaultCharacterValues(byte first, byte second, byte third) {
+        part = new byte[]{first, second, third};
     }
 
     @Override
@@ -77,8 +77,8 @@ class DefaultCharacterValues implements CharacterValues {
 }
 
 class TwoByteCharacterValues extends DefaultCharacterValues {
-    public TwoByteCharacterValues(int first, int second) {
-        super(first, second, 0b0);
+    public TwoByteCharacterValues(byte first, byte second) {
+        super(first, second, (byte) 0b0);
     }
 
     @Override
@@ -90,8 +90,8 @@ class TwoByteCharacterValues extends DefaultCharacterValues {
 
 class OneByteCharacterValues extends TwoByteCharacterValues {
 
-    public OneByteCharacterValues(int first) {
-        super(first, 0b0);
+    public OneByteCharacterValues(byte first) {
+        super(first, (byte) 0b0);
     }
 
     @Override
