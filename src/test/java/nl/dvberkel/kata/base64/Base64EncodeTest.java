@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -128,11 +129,11 @@ class Base64EncodeTestCase {
     private String destination;
 
     public static Base64EncodeTestCase verifyThat(int... source) {
-        byte[] clone = new byte[source.length];
+        byte[] bytes = new byte[source.length];
         for (int index = 0; index < source.length; index++) {
-            clone[index] = (byte) source[index];
+            bytes[index] = (byte) source[index];
         }
-        return verifyThat(clone);
+        return verifyThat(bytes);
     }
 
     public static Base64EncodeTestCase verifyThat(byte... source) {
