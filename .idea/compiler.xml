@@ -25,6 +25,9 @@
         <module name="base64kata" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="base64kata" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 
