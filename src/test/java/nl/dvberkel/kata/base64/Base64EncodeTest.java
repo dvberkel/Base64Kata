@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class Base64EncodeTest {
     private final byte[] source;
     private final String destination;
 
-    private Kata kata;
+    private Encoder kata;
 
     public Base64EncodeTest(Base64EncodeTestCase testCase) {
         this.source = testCase.getSource();
@@ -147,7 +146,7 @@ class Base64EncodeTestCase {
     public Base64EncodeTestCase[] encodesAs(String destination) {
         this.destination = destination;
 
-        return  new Base64EncodeTestCase[] { this };
+        return new Base64EncodeTestCase[]{this};
     }
 
     public byte[] getSource() {

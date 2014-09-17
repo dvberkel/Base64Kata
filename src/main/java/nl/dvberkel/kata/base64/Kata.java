@@ -4,7 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Kata {
+public class Kata implements Encoder {
+    @Override
     public String encode(byte[] source) {
         StringBuilder result = new StringBuilder();
         int index = 0;
