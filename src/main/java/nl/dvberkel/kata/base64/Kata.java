@@ -33,9 +33,21 @@ public class Kata {
 
     public byte[] decode(String source) {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
-        result.write(0b0);
-        result.write(0b0);
-        result.write(0b0);
+        int index = 0;
+        while (index < source.length()) {
+            String substring = source.substring(index, index + 4);
+            if (substring.endsWith("==")) {
+                result.write(0b0);
+            } else if (substring.endsWith("=")) {
+                result.write(0b0);
+                result.write(0b0);
+            } else {
+                result.write(0b0);
+                result.write(0b0);
+                result.write(0b0);
+            }
+            index += 4;
+        }
         return result.toByteArray();
     }
 }

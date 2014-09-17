@@ -39,6 +39,12 @@ public class Base64DecodeTest {
     public static Collection<Base64DecodeTestCase[]> data() {
         List<Base64DecodeTestCase[]> data = new ArrayList<>();
         data.add(verifyThat("AAAA").decodesTo(0b0, 0b0, 0b0));
+        data.add(verifyThat("AAAAAAAA").decodesTo(0b0, 0b0, 0b0, 0b0, 0b0, 0b0));
+        data.add(verifyThat("AAAAAAAAAAAA").decodesTo(0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0, 0b0));
+        data.add(verifyThat("AAA=").decodesTo(0b0, 0b0));
+        data.add(verifyThat("AA==").decodesTo(0b0));
+        data.add(verifyThat("AAAAAAA=").decodesTo(0b0, 0b0, 0b0, 0b0, 0b0));
+        data.add(verifyThat("AAAAAA==").decodesTo(0b0, 0b0, 0b0, 0b0));
         return data;
     }
 }
