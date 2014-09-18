@@ -1,11 +1,10 @@
 package nl.dvberkel.kata.base64;
 
 import org.junit.Before;
-import org.junit.experimental.theories.DataPoint;
+import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
-
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -24,11 +23,21 @@ public class Base64Theories {
         kata = new Kata();
     }
 
-    @DataPoint
-    public static byte[] singleByte = new byte[] {0b0};
-
-    @DataPoint
-    public static byte[] tripleBytes = new byte[] {0b0, 0b0, 0b0};
+    @DataPoints
+    public static byte[][] dataPoints = new byte[][]{
+            new byte[]{0b0},
+            new byte[]{0b0, 0b0},
+            new byte[]{0b0, 0b0, 0b0},
+            new byte[]{0b0, 0b0, 0b0, 0b0},
+            new byte[]{0b0, 0b0, 0b0, 0b0, 0b0},
+            new byte[]{0b0, 0b0, 0b0, 0b0, 0b0, 0b0},
+            new byte[]{0b111111},
+            new byte[]{0b111111, 0b111111},
+            new byte[]{0b111111, 0b111111, 0b111111},
+            new byte[]{0b111111, 0b111111, 0b111111, 0b111111},
+            new byte[]{0b111111, 0b111111, 0b111111, 0b111111, 0b111111},
+            new byte[]{0b111111, 0b111111, 0b111111, 0b111111, 0b111111, 0b111111}
+    };
 
     @Theory
     public void decodeIsTheInverseOfEncode(byte[] input) {
