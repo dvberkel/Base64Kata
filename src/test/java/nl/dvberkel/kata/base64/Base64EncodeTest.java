@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Base64EncodeTest {
         assertThat(kata.encode(source), is(destination));
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name="{0}")
     public static Collection<Base64EncodeTestCase[]> data() {
         List<Base64EncodeTestCase[]> data = new ArrayList<>();
         data.add(verifyThat(0b0, 0b0, 0b0).encodesAs("AAAA"));
@@ -155,6 +156,11 @@ class Base64EncodeTestCase {
 
     public String getDestination() {
         return destination;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("encode(%s) should be \"%s\"", Arrays.toString(source), destination);
     }
 }
 

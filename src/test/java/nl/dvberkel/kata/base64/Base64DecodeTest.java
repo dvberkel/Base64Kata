@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Base64DecodeTest {
         assertThat(kata.decode(source), is(destination));
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name="{0}")
     public static Collection<Base64DecodeTestCase[]> data() {
         List<Base64DecodeTestCase[]> data = new ArrayList<>();
         data.add(verifyThat("AAAA").decodesTo(0b0, 0b0, 0b0));
@@ -87,5 +88,10 @@ class Base64DecodeTestCase {
 
     public byte[] getDestination() {
         return destination;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("decode(\"%s\") should be %s", source, Arrays.toString(destination));
     }
 }
