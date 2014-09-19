@@ -119,8 +119,9 @@ public class Base64EncodeTest {
         data.add(verifyThat(0b11111100, 0b00000000, 0b00000000).encodesAs("/AAA"));
         data.add(verifyThat(0b00000001).encodesAs("AQ=="));
         data.add(verifyThat(0b11111111).encodesAs("/w=="));
-        data.add(verifyThat(0b00000000, 0b000000001).encodesAs("AAE="));
-        data.add(verifyThat(0b11111111, 0b111111111).encodesAs("//8="));
+        data.add(verifyThat(0b00000000, 0b00000001).encodesAs("AAE="));
+        data.add(verifyThat(0b11111111, 0b11111111).encodesAs("//8="));
+        
         return data;
     }
 }
